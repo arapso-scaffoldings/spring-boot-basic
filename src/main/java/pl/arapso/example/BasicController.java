@@ -2,6 +2,7 @@ package pl.arapso.example;
 
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import pl.arapso.example.extended.FragmentSnapshot;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -31,6 +32,12 @@ public class BasicController {
     @RequestMapping(value = "/empty")
     public EmptyModel getEmptyModel() {
         return new EmptyModel();
+    }
+
+    @RequestMapping(value = "/extended")
+    public FragmentSnapshot getFragmentSnapshot() {
+        FragmentSnapshot temp = FragmentSnapshot.builder().build();
+        return temp;
     }
 
 }

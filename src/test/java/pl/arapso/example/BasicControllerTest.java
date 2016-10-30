@@ -10,6 +10,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.http.*;
 import org.springframework.test.context.junit4.SpringRunner;
+import pl.arapso.example.extended.FragmentSnapshot;
 
 import java.nio.charset.Charset;
 import java.util.ArrayList;
@@ -58,6 +59,17 @@ public class BasicControllerTest {
     public void shouldReturnNoConverterFound() {
         // when
         testRestTemplate.getForEntity("/empty", EmptyModel.class);
+    }
+
+    @Test
+    public void shouldSerializeFragmentSnapshot() {
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(contentType);
+        headers.setAccept(Arrays.asList(MediaType.APPLICATION_JSON));
+        HttpEntity<Void> entity = new HttpEntity<>(headers);
+
+        // when
+        testRestTemplate.exchange("/extended", HttpMethod.GET, entity, FragmentSnapshot.class);
     }
 
     private BasicModel getBasicModel() {
