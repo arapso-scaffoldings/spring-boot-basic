@@ -26,7 +26,11 @@ public class BasicController {
         basicModel.setSampleList(list);
 
         return basicModel;
+    }
 
+    @RequestMapping(value = "/empty")
+    public EmptyModel getEmptyModel() {
+        return new EmptyModel();
     }
 
 }

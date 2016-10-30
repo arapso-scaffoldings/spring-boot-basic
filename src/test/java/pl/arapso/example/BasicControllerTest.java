@@ -1,6 +1,8 @@
 package pl.arapso.example;
 
 import org.assertj.core.api.Assertions;
+import org.junit.ComparisonFailure;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -49,6 +51,13 @@ public class BasicControllerTest {
         assertThat(result.getStatusCode()).isEqualTo(HttpStatus.OK);
         BasicModel expected = getBasicModel();
         assertThat(result.getBody()).isEqualTo(expected);
+    }
+
+    @Test
+    @Ignore
+    public void shouldReturnNoConverterFound() {
+        // when
+        testRestTemplate.getForEntity("/empty", EmptyModel.class);
     }
 
     private BasicModel getBasicModel() {
